@@ -60,9 +60,8 @@
             <p class="mt-2">{{ product.product_name }}</p>
             <h6 class="mt-2">£{{ parseInt(product.price) }}</h6>
             <p class="mt-2 value">
-              Guaranteed value: £{{ parseInt(product.min_range) }} - £{{
-                parseInt(product.max_range)
-              }}
+              {{ product.description.slice(0, 20)
+              }}{{ product.description.length > 20 ? "..." : "" }}
             </p>
             <NuxtLink
               :to="{

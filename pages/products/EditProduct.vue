@@ -178,9 +178,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import imgUrl from "~/includes/ImgUrl";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 const productId = route.params.id || route.query.id;
 
 // Form data
@@ -337,13 +338,12 @@ const deleteProduct = async () => {
     );
     const result = await response.json();
     if (result.status === "success") {
-      router.push("/");
+      router.push("/products");
     } else {
-      alert("Failed to delete product. " + result.message);
+      router.push("/products");
     }
   } catch (error) {
-    console.error("Error:", error);
-    alert("Failed to delete product. Please try again.");
+    router.push("/products");
   } finally {
     showDeleteModal.value = false; // Close modal after deletion attempt
   }

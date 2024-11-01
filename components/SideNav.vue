@@ -231,7 +231,7 @@
           <h6>Settings</h6>
         </div>
       </div>
-      <div class="page__tab">
+      <div class="page__tab" @click="signOut">
         <div class="d-flex align-items-center">
           <svg
             class="me-2"
@@ -268,9 +268,18 @@ definePageMeta({
   middleware: "auth",
 });
 const route = useRoute();
+const router = useRouter();
 
 const isActive = (currentRoute) => {
   return route.name === currentRoute;
+};
+const signOut = () => {
+  // Clear the authentication token
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("username");
+
+  // Redirect to the authentication page
+  router.push("/auth");
 };
 </script>
 <style lang=""></style>

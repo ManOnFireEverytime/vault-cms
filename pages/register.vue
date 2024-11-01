@@ -17,6 +17,12 @@
       </form>
 
       <p v-if="message">{{ message }}</p>
+      <p class="mt-3">
+        Already have an account?
+        <NuxtLink to="/auth" class="register-link" style="color: #260021"
+          >Login</NuxtLink
+        >
+      </p>
     </div>
   </div>
 </template>
