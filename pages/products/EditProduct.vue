@@ -326,15 +326,18 @@ const updateProduct = async () => {
 const deleteProduct = async () => {
   try {
     const response = await fetch(
-      `https://backend.thevaultldn.com/deleteProduct.php?id=${productId}`,
+      `https://backend.thevaultldn.com/deleteProduct.php`,
       {
-        method: "DELETE",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: productId }), // Pass the ID in the body
       }
     );
     const result = await response.json();
     if (result.status === "success") {
-      alert("Product deleted successfully!");
-      router.push("/products");
+      router.push("/");
     } else {
       alert("Failed to delete product. " + result.message);
     }
